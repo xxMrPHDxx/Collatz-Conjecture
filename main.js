@@ -69,6 +69,9 @@ function highestCollatz(end,from=1){
 
 //ctx.scale(3,3);
 
+let TOP_SCREEN = -Infinity;
+let DOWN_SCREEN = Infinity;
+
 function drawCollatz(mouse){
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.fillStyle = "red";
@@ -82,13 +85,13 @@ function drawCollatz(mouse){
 			c.forEach((num,j) => {
 				// if(trash.includes(num)) return;
 				let angle = j * Math.PI / c.length - Math.PI;
-				// ctx.save();
-				// ctx.beginPath();
-				// ctx.translate(col * canvas.width / 10 - 100,row * canvas.height / 10 - 100);
-				// ctx.lineTo((num - 3) * Math.cos(angle),(num - 3) * Math.sin(angle));
-				// ctx.stroke();
-				// ctx.restore();
 				let radius = 10 * Math.sin(i);
+				// ctx.save();
+				ctx.beginPath();
+				ctx.moveTo(col * canvas.width / 10 - 100,row * canvas.height / 10 - 100);
+				ctx.lineTo((radius - 10) * Math.cos(angle),(radius - 10) * Math.sin(angle));
+				ctx.stroke();
+				// ctx.restore();
 				ctx.translate(radius * Math.cos(angle),radius * Math.sin(angle));
 				ctx.fillText(num,0,0);
 				trash.push(num);
